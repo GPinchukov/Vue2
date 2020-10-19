@@ -20,8 +20,7 @@ export default {
   margin-top: 60px;
 }
 html, body{
-  background: url("assets/img/background.jpg") 100% 100% no-repeat;
-  height: 100%;
+  background-color: #E0C3FC;
 }
   ul{
   list-style-type: none;

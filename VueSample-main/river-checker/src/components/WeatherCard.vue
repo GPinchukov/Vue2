@@ -1,7 +1,7 @@
 <template>
     <div class="card">
-      <div>{{country}}{{name}}{{temp}}</div>
-      <div>{{sunrise}} {{sunset}}</div>
+      <div> облачность: {{clouds}} % </div>
+      <div> температура: {{temp}} % </div>
     </div>
 </template>
 
@@ -9,11 +9,10 @@
 export default {
   name: 'WeatherCard',
   props: {
-    country: null,
-    name: null,
-    sunrise: null,
-    sunset: null,
-    temp: null
+    timezone: null,
+    clouds: null,
+    temp: null,
+    daily: null
   }
 }
 </script>
@@ -21,10 +20,11 @@ export default {
 <style scoped>
   .card{
     border-radius: 15px;
-    background: rgba(200,200,200,0.5);
-    color: #060d98;
+    background: #6284FF;
+    color: white;
     font-weight: bold;
-    width: 250px;
+    font-size: 30px;
+    width: 320px;
     margin: 20px;
     height: 170px;
     padding: 5px;

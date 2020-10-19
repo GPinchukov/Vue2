@@ -1,11 +1,8 @@
 <template>
   <div>
-    <h1>{{weather.country}}</h1>
+    <h1> {{weather.timezone}} {{weather.clouds}}  <img src= "../assets/img/russia.svg" alt="pict" width="25" height="25"> </h1>
     <Weather
-            :country="weather.country"
-            :name="weather.name"
-            :sunrise="weather.sunrise"
-            :sunset="weather.sunset"
+            :clouds="weather.clouds"
             :temp="weather.temp">
     </Weather>
 
@@ -20,30 +17,32 @@ export default {
   components: {
     Weather
   },
-  data () {
+  data: function () {
     return {
       regApi: new Reg(),
       personMass: [],
       page: 1,
       totalPages: 1,
       weather: {
-        country: null,
-        name: null,
-        sunrise: null,
-        sunset: null,
-        temp: null
+        timezone: null,
+        clouds: null,
+        temp: null,
+        day: null,
+        daily: null
       }
     }
   },
   methods: {
     getData: function () {
       this.regApi.getData(this.page).then(data => {
-        console.log(data)
-        this.weather.country = data.data.city.country
-        this.weather.name = data.data.city.name
-        this.weather.sunrise = data.data.city.sunrise
-        this.weather.sunset = data.data.city.sunset
-        this.weather.temp = data.data.temp
+        // console.log(data)
+        console.log(data.data.daily[0].clouds)
+        this.weather.timezone = data.data.timezone
+        this.weather.clouds = data.data.daily[0].clouds
+        this.weather.temp = data.data.daily[0].temp.day
+        // this.weather.sunrise = data.data.city.sunrise
+        // this.weather.sunset = data.data.city.sunset
+        // this.weather.temp = data.data.temp
       })
     }
   },
@@ -80,7 +79,7 @@ a:visited {
   color: #2656e5;
 }
 a:hover {
-  color: #154088;
+  color: #154055;
   border-bottom: .07em solid;
 }
 a:active {
