@@ -1,7 +1,7 @@
 <template>
     <div class="card">
       <div> облачность: {{clouds}} % </div>
-      <div> температура: {{temp}} % </div>
+      <div> температура: {{temp}} K </div>
     </div>
 </template>
 
@@ -23,7 +23,7 @@ export default {
     background: #6284FF;
     color: white;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 25px;
     width: 320px;
     margin: 20px;
     height: 170px;

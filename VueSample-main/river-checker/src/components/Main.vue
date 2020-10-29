@@ -6,6 +6,21 @@
             :temp="weather.temp">
     </Weather>
 
+    <div id="app">
+      <h2>Коты</h2>
+      <div v-for="(cat, n) in cats">
+        <p>
+          <span class="cat">{{ cat }}</span>
+          <button @click="removeCat(n)">Удалить</button>
+        </p>
+      </div>
+
+      <p>
+        <input v-model="newCat">
+        <button @click="addCat">Добавить кота</button>
+      </p>
+    </div>
+
   </div>
 </template>
 
@@ -19,6 +34,8 @@ export default {
   },
   data: function () {
     return {
+      cats: [],
+      newCat: null,
       regApi: new Reg(),
       personMass: [],
       page: 1,
@@ -32,7 +49,36 @@ export default {
       }
     }
   },
+  mounted() {
+    if (localStorage.getItem('cats')) {
+      try {
+        this.cats = JSON.parse(localStorage.getItem('cats'));
+      } catch(e) {
+        localStorage.removeItem('cats');
+      }
+    }
+  },
+
+
   methods: {
+    addCat() {
+      // убедиться, что было что-либо введено
+      if (!this.newCat) {
+        return;
+      }
+    this.cats.push(this.newCat);
+    this.newCat = '';
+    this.saveCats();
+    },
+    removeCat(x) {
+      this.cats.splice(x, 1);
+      this.saveCats();
+    },
+    saveCats() {
+      const parsed = JSON.stringify(this.cats);
+      localStorage.setItem('cats', parsed);
+    },
+    
     getData: function () {
       this.regApi.getData(this.page).then(data => {
         // console.log(data)
@@ -50,11 +96,15 @@ export default {
     this.getData()
   },
   watch: {
+    name(newName) {
+      localStorage.name = newName;
+    },
     page () {
       this.getData()
     }
   }
 }
+
 </script>
 
 <style scoped>
