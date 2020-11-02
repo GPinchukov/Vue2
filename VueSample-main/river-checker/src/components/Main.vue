@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h1> {{weather.timezone}} {{weather.clouds}}  <img src= "../assets/img/russia.svg" alt="pict" width="25" height="25"> </h1>
+    <h1> {{weather.name}} {{weather.clouds}}  <img src= "../assets/img/russia.svg" alt="pict" width="25" height="25"> </h1>
     <Weather
             :clouds="weather.clouds"
             :temp="weather.temp">
     </Weather>
 
     <div id="app">
-      <h2>Коты</h2>
+      <h2>Города</h2>
       <div v-for="(cat, n) in cats">
         <p>
           <span class="cat">{{ cat }}</span>
@@ -17,7 +17,7 @@
 
       <p>
         <input v-model="newCat">
-        <button @click="addCat">Добавить кота</button>
+        <button @click="addCat">Добавить Город </button>
       </p>
     </div>
 
@@ -34,6 +34,7 @@ export default {
   },
   data: function () {
     return {
+      name: null,
       cats: [],
       newCat: null,
       regApi: new Reg(),
@@ -62,7 +63,6 @@ export default {
 
   methods: {
     addCat() {
-      // убедиться, что было что-либо введено
       if (!this.newCat) {
         return;
       }
@@ -78,14 +78,15 @@ export default {
       const parsed = JSON.stringify(this.cats);
       localStorage.setItem('cats', parsed);
     },
-    
+
     getData: function () {
+
       this.regApi.getData(this.page).then(data => {
-        // console.log(data)
-        console.log(data.data.daily[0].clouds)
-        this.weather.timezone = data.data.timezone
-        this.weather.clouds = data.data.daily[0].clouds
-        this.weather.temp = data.data.daily[0].temp.day
+        console.log(data)
+        //console.log(data.data.daily[0].clouds)
+        this.weather.name = data.data.name
+        this.weather.clouds = data.data.clouds.all
+        this.weather.temp = data.data.main.temp
         // this.weather.sunrise = data.data.city.sunrise
         // this.weather.sunset = data.data.city.sunset
         // this.weather.temp = data.data.temp
