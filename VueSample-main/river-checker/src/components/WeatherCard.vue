@@ -1,7 +1,8 @@
 <template>
     <div class="card">
-      <div> облачность: {{clouds}} % </div>
-      <div> температура: {{temp}} K </div>
+      <div> облачность: {{clouds}} %  <img :src= "`http://openweathermap.org/img/wn/${icon}@2x.png`" alt="pict" width="40" height="40"> </div>
+      <div> температура: {{temp}} °C </div>
+      <div> страна:  <img class="im" :src="`https://www.countryflags.io/${country}/flat/24.png`">  </div>
     </div>
 </template>
 
@@ -9,15 +10,21 @@
 export default {
   name: 'WeatherCard',
   props: {
+    country: null,
     timezone: null,
     clouds: null,
+    icon:null,
     temp: null,
     daily: null
+
   }
 }
 </script>
 
 <style scoped>
+  .im{
+
+   }
   .card{
     border-radius: 15px;
     background: #6284FF;

@@ -1,24 +1,19 @@
 <template>
   <div>
-    <h1> {{weather.name}} {{weather.clouds}}  <img src= "../assets/img/russia.svg" alt="pict" width="25" height="25"> </h1>
+    <h1> {{weather.name}}  </h1>
+    <div class="cnt"> </div>
     <Weather
             :clouds="weather.clouds"
-            :temp="weather.temp">
+            :temp="Math.ceil(weather.temp - 273)"
+            :country="weather.country"
+            :icon="weather.icon ">
     </Weather>
 
     <div id="app">
-      <h2>Города</h2>
-      <div v-for="(cat, n) in cats">
-        <p>
-          <span class="cat">{{ cat }}</span>
-          <button @click="removeCat(n)">Удалить</button>
-        </p>
-      </div>
-
       <p>
-        <input v-model="newCat">
-        <button @click="addCat">Добавить Город </button>
-      </p>
+        Город <input v-model="city">
+      <p/>
+      <button @click="getData">Сохранить</button>
     </div>
 
   </div>
@@ -35,58 +30,35 @@ export default {
   data: function () {
     return {
       name: null,
-      cats: [],
-      newCat: null,
+      city: null,
       regApi: new Reg(),
       personMass: [],
       page: 1,
       totalPages: 1,
       weather: {
+        icon: null,
         timezone: null,
         clouds: null,
         temp: null,
         day: null,
-        daily: null
+        daily: null,
+        country: null
       }
     }
   },
-  mounted() {
-    if (localStorage.getItem('cats')) {
-      try {
-        this.cats = JSON.parse(localStorage.getItem('cats'));
-      } catch(e) {
-        localStorage.removeItem('cats');
-      }
-    }
-  },
-
 
   methods: {
-    addCat() {
-      if (!this.newCat) {
-        return;
-      }
-    this.cats.push(this.newCat);
-    this.newCat = '';
-    this.saveCats();
-    },
-    removeCat(x) {
-      this.cats.splice(x, 1);
-      this.saveCats();
-    },
-    saveCats() {
-      const parsed = JSON.stringify(this.cats);
-      localStorage.setItem('cats', parsed);
-    },
-
     getData: function () {
 
-      this.regApi.getData(this.page).then(data => {
+      this.regApi.getData(this.city).then(data => {
         console.log(data)
         //console.log(data.data.daily[0].clouds)
         this.weather.name = data.data.name
         this.weather.clouds = data.data.clouds.all
         this.weather.temp = data.data.main.temp
+        this.weather.icon = data.data.weather[0].icon
+        this.weather.timezone = data.data.timezone
+        this.weather.country = data.data.sys.country
         // this.weather.sunrise = data.data.city.sunrise
         // this.weather.sunset = data.data.city.sunset
         // this.weather.temp = data.data.temp
@@ -94,7 +66,7 @@ export default {
     }
   },
   created () {
-    this.getData()
+    this.getData(this.city)
   },
   watch: {
     name(newName) {
@@ -111,6 +83,9 @@ export default {
 <style scoped>
 
 h1{
+  tab-size: 60px;
+  text-align: center;
+  padding-bottom: 5px;
   color: #d2511e;
 }
 h3{
