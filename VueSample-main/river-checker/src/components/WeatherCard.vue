@@ -27,8 +27,8 @@ export default {
    }
   .card{
     border-radius: 15px;
-    background: #6284FF;
-    color: white;
+    background: #fdc007;
+    color: black;
     font-weight: bold;
     font-size: 25px;
     width: 320px;
