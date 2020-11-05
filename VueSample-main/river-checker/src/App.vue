@@ -20,11 +20,12 @@ export default {
   text-align: center;
   margin-top: 60px;
 }
-html, body{
-  background-color: #E0C3FC;
-}
-  ul{
+ body {
+  background-color: slategrey;
+
+ul {
   list-style-type: none;
 
-  }
+}
+}
 </style>

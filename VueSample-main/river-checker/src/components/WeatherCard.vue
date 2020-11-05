@@ -1,9 +1,24 @@
 <template>
-    <div class="card">
+
+      <b-container fluid class="bv-example-row">
+      <b-row>
+        <b-col md="6" offset-md="3">
+          <b-card
+            border-variant="Weather"
+            header="Weather"
+            header-bg-variant="primary"
+            header-text-variant="white"
+          >
+        <b-card-text>
       <div> облачность: {{clouds}} %  <img :src= "`http://openweathermap.org/img/wn/${icon}@2x.png`" alt="pict" width="40" height="40"> </div>
       <div> температура: {{temp}} °C </div>
       <div> страна:  <img class="im" :src="`https://www.countryflags.io/${country}/flat/24.png`">  </div>
-    </div>
+        </b-card-text>
+      </b-card>
+        </b-col>
+      </b-row>
+      </b-container>
+
 </template>
 
 <script>
@@ -26,17 +41,10 @@ export default {
 
    }
   .card{
-    border-radius: 15px;
-    background: #fdc007;
-    color: black;
-    font-weight: bold;
-    font-size: 25px;
-    width: 320px;
-    margin: 20px;
-    height: 170px;
-    padding: 5px;
-    display: inline-block;
-    transition: .3s;
+    font-size: 30px;
+    font-family: 'Avenir', Helvetica, Arial, sans-serif;
+
+
   }
   :hover.card {
     transform: scale(1.1, 1.1);

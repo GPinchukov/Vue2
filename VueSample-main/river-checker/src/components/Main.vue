@@ -10,33 +10,12 @@
     </Weather>
 
     <div id="app">
-
-        <div>
-
-        </div>
-      <b-col md="6" offset-md="3">
-        <div class="mt-3">
-            <b-card bg-variant="warning" text-variant="white" header="Weather" class="text-center">
-              <b-card-text>
-                <Weather
-                :clouds="weather.clouds"
-                :temp="Math.ceil(weather.temp - 273)"
-                :country="weather.country"
-                :icon="weather.icon ">
-                </Weather>
-              </b-card-text>
-            </b-card>
-          </b-card-group>
-        </div>
-      </b-col>
       </div>
       <p>
-        Город <input v-model="city">
+         <input v-model="city">
       <p/>
       <b-button @click="getData" pill variant="info"> Сохранить </b-button>
     </div>
-
-  </div>
 </template>
 
 <script>
