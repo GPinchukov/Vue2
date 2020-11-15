@@ -21,7 +21,7 @@ export default {
   margin-top: 60px;
 }
  body {
-  background-color: slategrey;
+   background-image: url(assets/img/mgt-cover.jpg);
 
 ul {
   list-style-type: none;

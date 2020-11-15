@@ -5,7 +5,7 @@ export default class Reg {
     this._apiUrl = 'http://api.openweathermap.org'
   }
   getData (city) {
-    let route = `${this._apiUrl}/data/2.5/weather`
+    let route = `${this._apiUrl}/data/2.5/forecast`
     return this._http.get(`${route}`, {
       params: {
         q: `${city}`,
