@@ -21,7 +21,7 @@ export default {
   margin-top: 60px;
 }
  body {
-   background-image: url(assets/img/mgt-cover.jpg);
+   background-image: url(assets/img/pattern-cats-and-order-wallpaper.png);
 
 ul {
   list-style-type: none;

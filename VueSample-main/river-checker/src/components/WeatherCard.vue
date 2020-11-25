@@ -3,7 +3,7 @@
       <b-container fluid class="bv-example-row">
       <b-row>
         <b-col md="6" offset-md="3">
-          <b-card bg-variant="danger" header="Weather" text-variant="white" class="text-center">
+          <b-card bg-variant="dark" :header="`${name}`" text-variant="white" class="text-center">
         <b-card-text>
           <b-container class="bv-example-row">
             <b-row cols="1" cols-sm="2" cols-md="4" cols-lg="6">
@@ -63,6 +63,7 @@
 export default {
   name: 'WeatherCard',
   props: {
+    name: null,
     country: null,
     timezone: null,
     clouds: null,
@@ -110,5 +111,6 @@ export default {
 
 
   }
+
 
 </style>

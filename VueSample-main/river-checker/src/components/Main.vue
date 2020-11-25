@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1> {{weather.name}} </h1>
     <div class="cnt"> </div>
     <Weather
             :clouds="weather.clouds"
@@ -31,7 +30,8 @@
             :icon5="weather.icon5 "
             :icon8="weather.icon8 "
             :icon16="weather.icon16 "
-            :icon24="weather.icon24 ">
+            :icon24="weather.icon24 "
+            :name="weather.name">
     </Weather>
 
     <div id="app">
@@ -39,10 +39,10 @@
     <b-container class="bv-example-row">
       <b-row class="text-center">
 
-        <b-col md="6" offset-md="3">
+        <b-col md="6" offset-md="4">
     <b-input-group>
 
-      <b-form-input v-model="city"> </b-form-input>
+      <input v-model="city">
 
       <b-input-group-append>
         <b-button  @click="getData"  > Save </b-button>
@@ -113,8 +113,8 @@ export default {
 
       this.regApi.getData(this.city).then(data => {
         console.log(data)
-        console.log(this.weather.date1 = data.data.list[1].dt_txt)
-        //this.weather.name = data.data.name
+        console.log(this.weather.name = data.data.city.name)
+        this.weather.name = data.data.city.name
         //this.weather.clouds = data.data.clouds.all
         this.weather.temp0 = data.data.list[0].main.temp
         this.weather.temp1 = data.data.list[1].main.temp
