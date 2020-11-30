@@ -2,63 +2,62 @@
   <div>
     <div class="cnt"> </div>
     <Weather
-            :clouds="weather.clouds"
-            :temp0="Math.ceil(weather.temp0 - 273)"
-            :temp1="Math.ceil(weather.temp1 - 273)"
-            :temp2="Math.ceil(weather.temp2 - 273)"
-            :temp3="Math.ceil(weather.temp3 - 273)"
-            :temp4="Math.ceil(weather.temp4 - 273)"
-            :temp5="Math.ceil(weather.temp5 - 273)"
-            :temp8="Math.ceil(weather.temp8 - 273)"
-            :temp16="Math.ceil(weather.temp16 - 273)"
-            :temp24="Math.ceil(weather.temp24 - 273)"
-            :date0="(weather.date0).substring(10,13)"
-            :date1="(weather.date1).substring(10,13)"
-            :date2="(weather.date2).substring(10,13)"
-            :date3="(weather.date3).substring(10,13)"
-            :date4="(weather.date4).substring(10,13)"
-            :date5="(weather.date5).substring(10,13)"
-            :date8="(weather.date8).substring(5,10)"
-            :date16="(weather.date16).substring(5,10)"
-            :date24="(weather.date24).substring(5,10)"
-            :country="weather.country"
-            :icon0="weather.icon0 "
-            :icon1="weather.icon1 "
-            :icon2="weather.icon2 "
-            :icon3="weather.icon3 "
-            :icon4="weather.icon4 "
-            :icon5="weather.icon5 "
-            :icon8="weather.icon8 "
-            :icon16="weather.icon16 "
-            :icon24="weather.icon24 "
-            :name="weather.name">
+      :clouds="weather.clouds"
+      :temp0="Math.ceil(weather.temp0 - 273)"
+      :temp1="Math.ceil(weather.temp1 - 273)"
+      :temp2="Math.ceil(weather.temp2 - 273)"
+      :temp3="Math.ceil(weather.temp3 - 273)"
+      :temp4="Math.ceil(weather.temp4 - 273)"
+      :temp5="Math.ceil(weather.temp5 - 273)"
+      :temp8="Math.ceil(weather.temp8 - 273)"
+      :temp16="Math.ceil(weather.temp16 - 273)"
+      :temp24="Math.ceil(weather.temp24 - 273)"
+      :date0="(weather.date0).substring(10,13)"
+      :date1="(weather.date1).substring(10,13)"
+      :date2="(weather.date2).substring(10,13)"
+      :date3="(weather.date3).substring(10,13)"
+      :date4="(weather.date4).substring(10,13)"
+      :date5="(weather.date5).substring(10,13)"
+      :date8="(weather.date8).substring(5,10)"
+      :date16="(weather.date16).substring(5,10)"
+      :date24="(weather.date24).substring(5,10)"
+      :country="weather.country"
+      :icon0="weather.icon0 "
+      :icon1="weather.icon1 "
+      :icon2="weather.icon2 "
+      :icon3="weather.icon3 "
+      :icon4="weather.icon4 "
+      :icon5="weather.icon5 "
+      :icon8="weather.icon8 "
+      :icon16="weather.icon16 "
+      :icon24="weather.icon24 "
+      :name="weather.name">
     </Weather>
 
     <div id="app">
-      </div>
+    </div>
     <b-container class="bv-example-row">
-      <b-row class="text-center">
+      <b-row alighn-h="center">
 
         <b-col md="6" offset-md="4">
-    <b-input-group>
+          <b-input-group>
 
-      <input v-model="city">
+            <input v-model="city">
 
-      <b-input-group-append>
-        <b-button  @click="getData"  > Save </b-button>
+            <b-input-group-append>
+              <b-button  @click="getData"  > Save </b-button>
 
-      </b-input-group-append>
-    </b-input-group>
+            </b-input-group-append>
+          </b-input-group>
         </b-col>
       </b-row>
     </b-container>
-    </div>
+  </div>
 </template>
 
 <script>
 import Reg from '../lib/api/River'
 import Weather from './WeatherCard'
-
 export default {
   name: 'Main',
   components: {
@@ -107,10 +106,8 @@ export default {
       }
     }
   },
-
   methods: {
     getData: function () {
-
       this.regApi.getData(this.city).then(data => {
         console.log(data)
         console.log(this.weather.name = data.data.city.name)
@@ -143,7 +140,7 @@ export default {
         this.weather.date8 = data.data.list[8].dt_txt
         this.weather.date16 = data.data.list[16].dt_txt
         this.weather.date24 = data.data.list[24].dt_txt
-       // this.weather.country = data.data.sys.country
+        // this.weather.country = data.data.sys.country
         // this.weather.sunrise = data.data.city.sunrise
         // this.weather.sunset = data.data.city.sunset
         // this.weather.temp = data.data.temp
@@ -163,11 +160,9 @@ export default {
     }
   }
 }
-
 </script>
 
 <style scoped>
-
 h1{
   tab-size: 60px;
   text-align: center;
